@@ -6,11 +6,11 @@
 
 (출처 : Deep Brain AI : [Retail & Commerce - DeepBrainAI](https://www.deepbrainai.io/en/commerce/) )
 
-## 🌼 Features
+## 🌼 기능
 
-- AI 상담
+- AI 상담 선생님과 대화를 통한 심리상태 기록
 
-## 📀 Install now!
+## 📀 설치
 
 ```
 npm install
@@ -20,21 +20,8 @@ npm install
 .env 파일 수정
 ```
 
-## 🚀 Run
+## 🚀 실행!
 
 ```
 npm run dev
 ```
-
-
-
-## 📘 Examples
-
-[Official website →](https://github.com/jaheeon1/deeptalk/)
-
-## 🤝 Support
-
-* Deep Brain AI
-
-![(https://github.com/jaheeon1/deeptalk/)](https://avatars.githubusercontent.com/u/78708309?v=4)
-
