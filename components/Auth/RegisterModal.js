@@ -15,7 +15,7 @@ import {
 
 export function RegisterModal() {
 	const { register, handleSubmit, errors, reset, setValue } = useForm();
-
+console.log('RegisterModal')
 	const state = useSelector((state) => state.auth);
 
 	const dispatch = useDispatch();
@@ -33,7 +33,7 @@ export function RegisterModal() {
         console.log(state.selectedStudent);
 
 		if (state.selectedStudent !== undefined) {
-        console.log('hi1');
+            console.log('ffff')
         dispatch(
 				updateStudent({
 					_id: state.selectedStudent._id,
@@ -41,7 +41,7 @@ export function RegisterModal() {
 				})
 			);
 		} else {
-        console.log('hi1');
+        console.log('ssddd');
 			dispatch(addStudent(data));
 		}
 	};
@@ -57,13 +57,13 @@ export function RegisterModal() {
 			// setValue("phone", state.selectedStudent.phone);
 		}
 	}, [state.selectedStudent, setValue]);
-
+    console.log(state.isRegisterModalOpen)
 	return state.isRegisterModalOpen
 		? ReactDOM.createPortal(
 				<div className="modal">
 					<div className="modal__content">
 						<header className="header modal__header">
-							<h1 className="header__h2">rgrg
+							<h1 className="header__h2">
 								{state.selectedStudent ? (
 									<>
 										Edit <span>Student</span>

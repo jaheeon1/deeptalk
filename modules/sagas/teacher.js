@@ -1,4 +1,4 @@
-import { put, takeLatest } from "redux-saga/effects"
+import { all, put, takeLatest } from "redux-saga/effects"
 import * as t from "../types"
 import checkLogined  from "../lambdas/checkLogined"
 
@@ -109,127 +109,22 @@ export function* watchUpdateTeacher() {
 }
 
 export function* syncTeachers() {
-    console.log('여기왔다');
+    console.log('saga > 1. syncTeachers');
 	try {
-        const sAppId = "aistudios.com"
-        const sUrl = "https://dev.aistudios.com/api/odin/"
-		const sUserKey = "6443234b-77d5-4013-bfd6-bb9399f317d9"
-        const oHeader = {"Content-Type": "application/json"}
-        const aTalkSteps = [
-            "반가워요",
-            "오늘 어떤 하루를 보내셨나요?"
-        ]
-        let oBody = {
-            appId: sAppId,
-            platform: "web",
-            uuid: sUserKey,
-            key: "-N24q17rb_yQC2oXTIRd",
-            sdk_v: "1.0",
-            clientHostname: sAppId,
-            isClientToken: true
-        }
-        console.log('oBody', oBody)
-        let sToken = sessionStorage.getItem("DEEP_TOKEN");
-        console.log('sToken', sToken)
-        if(!sToken) {   
-            const oClientToken = yield fetch(sUrl+"generateClientToken?appId="+sAppId+"&userKey="+sUserKey);
-            console.log('oClientToken', oClientToken)
-            const oToken = yield fetch(sUrl + "generateToken", {
-                method: "POST",
-                headers: oHeader,
-                body: Object.assign({}, oBody, {
-                    token: oClientToken.data.token
-                })
-            })
-            sToken = oToken.data.token;
-            sessionStorage.setItem("DEEP_TOKEN", sToken)
-            console.log('oToken', oToken)
-        }
-        let oModel = yield fetch(sUrl + "getModelList", {
-			method: "POST",
-			headers: oHeader,
-			body: Object.assign(oBody, {
-                token: sToken
-            })
-		})
-        console.log('oModel', oModel)
-        aStoredTeachers = aStoredTeachers.map(data => { return data.sync_id })
-        yield oModel.models
-        .filter(model => aStoredTeachers.includes(model.id) && model.language.includes("ko"))
-        .forEach(val => {
-            aTalkSteps.forEach(nStep => {
-                var oMakeVideo = fetch(sUrl + "makeVideo", {
-                    method: "POST",
-                    headers: oHeader,
-                    body: Object.assign({}, oBody, {
-                        language: "ko",
-                        text: "안녕하세요",
-                        model: id
-                    }),
-                })
-                console.log('oMakeVideo', oMakeVideo)
-
-                fetch("/api/teacher", {
-                    method: "POST",
-                    headers: oHeader,
-                    body: {
-                        sync_id: val.data.id,
-                        name: val.data.label.ko,
-                        expertise: val.data.expertise.ko,
-                        image_path: val.data.imgPath,
-                        language: "ko"
-                    },
-                });
-                fetch("/api/videoLog", {
-                    method: "POST",
-                    headers: oHeader,
-                    body: {
-                        key: val.data.id,
-                        teacher_name: val.data.label.ko,
-                        step: nStep
-                    },
-                });
-            })
-        })
-
-        let aVideo = yield fetch("/api/videoLog");
-        yield aVideo.forEach(val2 => {
-            var oGetVideo = fetch(sUrl + "makeVideo", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: Object.assign({}, oBody, {
-                    key: val2.data.key
-                }) ,
-            })
-
-            if(oGetVideo.data.process < 100) {
-                return
-            }
-            
-            var sDirPath = "storage/talk/ko/"+val2.teacher_name
-            var isExists = fs.existsSync( sDirPath );
-            if( !isExists ) {
-                fs.mkdirSync( sDirPath, { recursive: true } );
-            }
-            console.log(sDirPath);
-            saveAs(oGetVideo.data.video, sDirPath+"/"+val2.step+".mp4")
-        })
-
-        console.log('끝');
-        const response = yield fetch("/api/teacher");
-        const teacherList = yield response.json();
-
-
-		yield put({
-			type: t.TEACHER_SYNC_SUCCEEDED,
-			payload: teacherList.data,
+		yield fetch("/api/sync")
+        let oRes = yield fetch("/api/teacher")
+        oRes = yield oRes.json();
+        console.log('saga > put전. syncTeachers')
+        yield put({
+			type: t.TEACHER_FETCH_SUCCEEDED,
+            payload: oRes.data
 		});
+
 	} catch (error) {
+        console.log(error);
 		yield put({
-			type: t.TEACHER_SYNC_FAILED,
-			payload: error.t0.message,
+			type: t.TEACHER_FETCH_FAILED,
+			payload: error.message,
 		});
 	}
 }

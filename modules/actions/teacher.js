@@ -9,7 +9,7 @@ export const setTeacherModalOpen = (isTeacherModalOpen) => {
 
 export const fetchTeachers = () => {
 	return {
-		type: t.TEACHER_FETCH_REQUESTED,xzcsc
+		type: t.TEACHER_FETCH_REQUESTED,
 	};
 };
 
@@ -42,7 +42,7 @@ export const setSelectedTeacher = (id) => {
 };
 
 export const syncTeachers = () => {
-    console.log('action. syncTechekar');
+    console.log('action > syncTechekar');
 	return {
 		type: t.TEACHER_SYNC_REQUESTED
 	};

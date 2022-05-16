@@ -64,8 +64,7 @@ const mainReducer = (state = initialState, action) => {
 			};
         case t.TEACHER_SYNC_SUCCEEDED:
             return {
-                ...state,
-                teacherList: action.payload,
+                ...state
             };
 		default:
 			return state;

@@ -8,13 +8,13 @@ export default async (req, res) => {
 	switch (method) {
 		case "GET":
 			try {
-				const users = await Student.find({}).sort({
+				const students = await Student.find({}).sort({
 					createdAt: "desc",
 				});
 
 				return res.status(200).json({
 					success: true,
-					data: users,
+					data: students,
 				});
 			} catch (error) {
 				return res.status(400).json({
@@ -23,10 +23,10 @@ export default async (req, res) => {
 			}
 		case "POST":
 			try {
-				const users = await Student.create(req.body);
+				const students = await Student.create(req.body);
 				return res.status(201).json({
 					success: true,
-					data: users,
+					data: students,
 				});
 			} catch (error) {
 				return res.status(400).json({

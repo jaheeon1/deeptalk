@@ -21,33 +21,46 @@ export function TeacherSwipe() {
 
 	return (
         <>
-            <div>선생님 목록</div>
-            <table className="table">
-                <thead className="table__head">
-                    <tr>
-                        <th>이름</th>
-                    </tr>
-                </thead>
+            <div className="overflow-x-auto w-full">
+  <table className="table w-full">
+    <thead>
+      <tr>
+        <th>AI 상담선생님</th>
+        <th>특징</th>
+      </tr>
+    </thead>
+    <tbody>
+      {state.teacherList.map(({ _id, name, expertise, imgPath}) => (
+      <tr key={_id} onClick={() => {
+        dispatch(setSelectedTeacher(_id));
+        dispatch(setTeacherModalOpen(true));
+    }}>
 
-                <tbody className="table__body">
-                    {state.teacherList.map(({ _id, name}) => (
-                        <tr key={_id}>
-                            <td>{name}</td>
-                            <td>
-                                <button
-                                    className="btn btn__compact btn__edit"
-                                    onClick={() => {
-                                        dispatch(setSelectedTeacher(_id));
-                                        dispatch(setTeacherModalOpen(true));
-                                    }}
-                                >
-                                    <PencilSVG />
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+    
+        <td>
+          <div className="flex items-center space-x-3">
+            <div className="avatar">
+              <div className="mask mask-squircle w-12 h-12">
+                <img src={imgPath} alt="Avatar Tailwind CSS Component" />
+              </div>
+            </div>
+            <div>
+              <div className="font-bold">{name}</div>
+              <div className="text-sm opacity-50">{expertise}</div>
+            </div>
+          </div>
+        </td>
+        <td>
+        {expertise}
+          <br/>
+          <span className="badge badge-ghost badge-sm">{name}</span>
+        </td>
+         
+      </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
         </>
 	);
 }

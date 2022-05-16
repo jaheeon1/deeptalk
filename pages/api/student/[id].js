@@ -1,5 +1,5 @@
-import Student from "@/models/Student";
-import "@/models/dbConnect";
+import Student from "@/models/Student"
+import "@/models/dbConnect"
 
 export default async (req, res) => {
 	const {

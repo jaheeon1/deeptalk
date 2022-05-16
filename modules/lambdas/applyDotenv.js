@@ -1,10 +1,12 @@
 const applyDotenv = dotenv => {
     dotenv.config()
+    const oEnv = process.env;
     return {
-        mongoUri: process.env.MONGO_URI, 
-        port: process.env.PORT, 
-        jwtSecret: process.env.JWT_SECERT, 
-        origin: process.env.ORIGIN
+        mongoUri: oEnv.MONGO_URI, 
+        port: oEnv.PORT, 
+        jwtSecret: oEnv.JWT_SECERT, 
+        origin: oEnv.ORIGIN,
+        appUrl: oEnv.appUrl
     }
 }
 export default applyDotenv

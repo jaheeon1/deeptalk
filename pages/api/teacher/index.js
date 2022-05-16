@@ -4,10 +4,11 @@ import "@/models/dbConnect";
 
 export default async (req, res) => {
 	const { method } = req;
+    console.log('pages > /api/teacher/index.js');
 	switch (method) {
 		case "GET":
 			try {
-				const teacher = await Teacher.find({}).sort({
+				const teacher = await Teacher.find().sort({
 					createdAt: "desc",
 				});
 				return res.status(200).json({

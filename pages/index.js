@@ -4,8 +4,6 @@ function Landing() {
 	return (
 		<Layout>
 			<TeacherSwipe />
-            <MiddleNav />
-			<TalkSwipe />
             <TalkModal />
 		</Layout>
 	);
