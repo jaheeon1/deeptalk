@@ -10,11 +10,11 @@ export default async (req, res) => {
 	switch (method) {
 		case "GET":
 			try {
-				const user = await Student.findById(id);
+				const student = await Student.findById(id);
 
 				return res.status(200).json({
 					success: true,
-					data: user,
+					data: student,
 				});
 			} catch (error) {
 				return res.status(404).json({
@@ -23,14 +23,14 @@ export default async (req, res) => {
 			}
 		case "PUT":
 			try {
-				const user = await Student.findByIdAndUpdate(id, req.body, {
+				const student = await Student.findByIdAndUpdate(id, req.body, {
 					new: true,
 					runValidators: true,
 				});
 
 				return res.status(200).json({
 					success: true,
-					data: user,
+					data: student,
 				});
 			} catch (error) {
 				return res.status(400).json({

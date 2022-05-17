@@ -1,9 +1,9 @@
-import { Layout,TeacherSwipe } from "@/components";
+import { Layout, TalkScreen } from "@/components";
 
 function Landing() {
 	return (
 		<Layout>
-			<TeacherSwipe />
+			<TalkScreen />
 		</Layout>
 	);
 }

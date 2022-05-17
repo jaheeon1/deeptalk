@@ -11,12 +11,12 @@ export const initialState = {
 export function* fetchStudents() {
 	try {
 		checkLogined();
-		const response = yield fetch("/api/users");
+		const response = yield fetch("/api/students");
 
-		const userList = yield response.json();
+		const studentList = yield response.json();
 		yield put({
 			type: t.STUDENT_FETCH_SUCCEEDED,
-			payload: userList.data,
+			payload: studentList.data,
 		});
 	} catch (error) {
 		yield put({
@@ -32,7 +32,7 @@ export function* watchFetchStudents() {
 
 export function* addStudent(action) {
 	try {
-		const response = yield fetch("/api/users", {
+		const response = yield fetch("/api/students", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -61,7 +61,7 @@ export function* watchAddStudent() {
 export function* deleteStudent(action) {
 	try {
 		checkLogined();
-		const response = yield fetch("/api/users/" + action.payload, {
+		const response = yield fetch("/api/students/" + action.payload, {
 			method: "DELETE",
 		});
 
@@ -86,7 +86,7 @@ export function* watchRemoveStudent() {
 export function* updateStudent(action) {
 	try {
 		checkLogined();
-		const response = yield fetch("/api/users/" + action.payload._id, {
+		const response = yield fetch("/api/students/" + action.payload._id, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
@@ -114,7 +114,7 @@ export function* watchUpdateStudent() {
 
 export function* loginStudent(action) {
 	try {
-		const response = yield fetch("/api/users/login", {
+		const response = yield fetch("/api/students/login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -152,7 +152,7 @@ export function* watchLoginStudent() {
 
 export function* logoutStudent(action) {
 	try {
-		const response = yield fetch("/api/users/logout", {
+		const response = yield fetch("/api/students/logout", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

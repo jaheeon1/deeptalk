@@ -13,17 +13,17 @@ export const fetchVideoLogs = () => {
 	};
 };
 
-export const addVideoLog = (videolog) => {
+export const addVideoLog = (videoLog) => {
 	return {
 		type: t.VIDEOLOG_ADD_REQUESTED,
-		payload: videolog,
+		payload: videoLog,
 	};
 };
 
-export const updateVideoLog = (videolog) => {
+export const updateVideoLog = (videoLog) => {
 	return {
 		type: t.VIDEOLOG_UPDATE_REQUESTED,
-		payload: videolog,
+		payload: videoLog,
 	};
 };
 

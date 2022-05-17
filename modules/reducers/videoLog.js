@@ -2,13 +2,14 @@ import { HYDRATE } from "next-redux-wrapper";
 import * as t from "../types";
 
 const initialState = {
-	videologList: [],
+	videoLogList: [],
 	selectedVideoLog: undefined,
 	isVideoLogModalOpen: false,
 };
 
 const mainReducer = (state = initialState, action) => {
-	switch (action.type) {
+	console.log('in videoslog main reduver');
+    switch (action.type) {
 		case HYDRATE:
 			return { ...state, ...action.payload };
 		case t.MODAL_OPEN_VIDEOLOG:
@@ -27,7 +28,7 @@ const mainReducer = (state = initialState, action) => {
 				videoLogList: [action.payload, ...state.videoLogList],
 			};
 		case t.VIDEOLOG_UPDATE_SUCCEEDED:
-			const updatedVideoLog = state.videoLogList.map((videolog) => {
+			const updatedVideoLog = state.videoLogList.map((videoLog) => {
 				if (videoLog._id === action.payload._id) {
 					return {
 						...videoLog,
@@ -42,21 +43,21 @@ const mainReducer = (state = initialState, action) => {
                         meal_cost: action.payload.meal_cost,
 					};
 				}
-				return videolog;
+				return videoLog;
 			});
 
-			return { ...state, videologList: updatedVideoLog };
+			return { ...state, videoLogList: updatedVideoLog };
 		case t.VIDEOLOG_DELETE_SUCCEEDED:
-			const newVideoLogList = state.videologList.filter(
-				(videolog) => videolog._id !== action.payload
+			const newVideoLogList = state.videoLogList.filter(
+				(videoLog) => videoLog._id !== action.payload
 			);
 			return {
 				...state,
-				videologList: newVideoLogList,
+				videoLogList: newVideoLogList,
 			};
 		case t.VIDEOLOG_SELECTED:
-			const selectedVideoLog = state.videologList.find(
-				(videolog) => videolog._id === action.payload
+			const selectedVideoLog = state.videoLogList.find(
+				(videoLog) => videoLog._id === action.payload
 			);
 			return {
 				...state,
@@ -65,7 +66,7 @@ const mainReducer = (state = initialState, action) => {
         case t.VIDEOLOG_SYNC_SUCCEEDED:
             return {
                 ...state,
-                videologList: action.payload,
+                videoLogList: action.payload,
             };
 		default:
 			return state;

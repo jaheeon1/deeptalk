@@ -1,14 +1,10 @@
-import { all, put, takeLatest } from "redux-saga/effects"
+import { put, takeLatest } from "redux-saga/effects"
 import * as t from "../types"
-import checkLogined  from "../lambdas/checkLogined"
 
 export function* fetchTeachers() {
 	try {
-		checkLogined();
 		const response = yield fetch("/api/teacher");
-
 		const teacherList = yield response.json();
-
 		yield put({
 			type: t.TEACHER_FETCH_SUCCEEDED,
 			payload: teacherList.data,
@@ -22,13 +18,11 @@ export function* fetchTeachers() {
 }
 
 export function* watchFetchTeachers() {
-    console.log('watchfetchteacher');
 	yield takeLatest(t.TEACHER_FETCH_REQUESTED, fetchTeachers);
 }
 
 export function* addTeacher(action) {
 	try {
-		checkLogined();
 		const response = yield fetch("/api/teacher", {
 			method: "POST",
 			headers: {
@@ -56,7 +50,6 @@ export function* watchAddTeacher() {
 
 export function* deleteTeacher(action) {
 	try {
-		checkLogined();
 		const response = yield fetch("/api/teacher/" + action.payload, {
 			method: "DELETE",
 		});
@@ -81,7 +74,6 @@ export function* watchRemoveTeacher() {
 
 export function* updateTeacher(action) {
 	try {
-		checkLogined();
 		const response = yield fetch("/api/teacher/" + action.payload._id, {
 			method: "PUT",
 			headers: {

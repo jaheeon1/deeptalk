@@ -4,15 +4,7 @@ import { Header, Layout, Modal, Pagination, AuthTable, Nav, AuthModal, TeacherMo
 function Landing() {
 	return (
 		<Layout>
-			<Nav />
-			<Header />
-			<AuthTable />
-			<Pagination />
-			<Modal />
-			<AuthModal />
-			<TeacherModal />
-			<LoginModal />
-			<RegisterModal />
+			
 		</Layout>
 	);
 }

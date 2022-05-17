@@ -1,24 +1,22 @@
 import mongoose from "mongoose";
 
 const TalkSchema = new mongoose.Schema({
-	name: {
+	step: {
 		type: String,
-		required: [true, "Name is required!"],
+		required: [true, "step is required!"],
 		trim: true,
 	},
-	email: {
+	video_path: {
 		type: String,
-		required: [true, "Email is required!"],
 		trim: true,
 	},
-	address: {
+	status: {
 		type: String,
-		required: [true, "Address is required!"],
+		default: 'happy',
 		trim: true,
 	},
-	phone: {
+	teacher_id: {
 		type: String,
-		required: [true, "Phone is required!"],
 		trim: true,
 	},
 	createdAt: { type: Date, default: Date.now },

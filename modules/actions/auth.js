@@ -22,37 +22,37 @@ export const setRegisterModalOpen = (isRegisterModalOpen) => {
 };
 
 
-export const logout = (user) => {
+export const logout = (student) => {
 	return {
 		type: t.LOGOUT_REQUESTED,
-		payload: user,
+		payload: student,
 	};
 };
 
-export const login = (user) => {
+export const login = (student) => {
 	return {
 		type: t.LOGIN_REQUESTED,
-		payload: user,
+		payload: student,
 	};
 };
-export const fetchStudents = (user) => {
+export const fetchStudents = (student) => {
 	return {
 		type: t.STUDENT_FETCH_REQUESTED,
-		payload: user
+		payload: student
 	};
 };
 
-export const addStudent = (user) => {
+export const addStudent = (student) => {
 	return {
 		type: t.STUDENT_ADD_REQUESTED,
-		payload: user,
+		payload: student,
 	};
 };
 
-export const updateStudent = (user) => {
+export const updateStudent = (student) => {
 	return {
 		type: t.STUDENT_UPDATE_REQUESTED,
-		payload: user,
+		payload: student,
 	};
 };
 

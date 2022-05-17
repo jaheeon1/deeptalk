@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const VideoLogSchema = new mongoose.Schema({
 	key: {
 		type: String,
-		required: [true, "Name is required!"],
+		required: [false],
 		trim: true,
 	},
     teacher_name: {
@@ -17,9 +17,18 @@ const VideoLogSchema = new mongoose.Schema({
 		required: [false],
 		trim: true,
 	},
+    video_path: {
+        type: String,
+		required: [false],
+		trim: true,
+    }
 });
 
-export default mongoose.models.Teacher ||
+export default mongoose.models.VideoLog ||
 	mongoose.model("VideoLog", VideoLogSchema);
 
    
+
+
+
+

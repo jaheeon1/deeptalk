@@ -21,16 +21,16 @@ export function AuthTable() {
 		<table className="table">
 			<thead className="table__head">
 				<tr>
-					<th>userid</th>
+					<th>studentid</th>
 					<th>password</th>
 					<th>name</th>
 				</tr>
 			</thead>
 
 			<tbody className="table__body">
-				{(state)?state.userList.map(({ _id, userid, password, name }) => (
+				{(state)?state.studentList.map(({ _id, studentid, password, name }) => (
 					<tr key={_id}>
-						<td>{userid}</td>
+						<td>{studentid}</td>
 						<td>{password}</td>
 						<td>{name}</td>
 						<td>

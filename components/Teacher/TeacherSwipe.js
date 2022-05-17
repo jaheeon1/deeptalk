@@ -10,7 +10,6 @@ import { useEffect } from "react";
 
 export function TeacherSwipe() {
 	const state = useSelector((state) => {
-		console.log(state.teacher);
 		return state.teacher;
 	});
 	const dispatch = useDispatch();
@@ -25,15 +24,14 @@ export function TeacherSwipe() {
   <table className="table w-full">
     <thead>
       <tr>
-        <th>AI 상담선생님</th>
-        <th>특징</th>
+        <th style={{background: "skyblue"}}>AI 상담선생님</th>
+        <th style={{background: "skyblue"}}>특징</th>
       </tr>
     </thead>
     <tbody>
-      {state.teacherList.map(({ _id, name, expertise, imgPath}) => (
+      {state.teacherList.map(({ _id, name, expertise, img_path}) => (
       <tr key={_id} onClick={() => {
-        dispatch(setSelectedTeacher(_id));
-        dispatch(setTeacherModalOpen(true));
+        dispatch(setSelectedTeacher(true));
     }}>
 
     
@@ -41,7 +39,7 @@ export function TeacherSwipe() {
           <div className="flex items-center space-x-3">
             <div className="avatar">
               <div className="mask mask-squircle w-12 h-12">
-                <img src={imgPath} alt="Avatar Tailwind CSS Component" />
+                <img src={img_path} alt="Avatar Tailwind CSS Component" />
               </div>
             </div>
             <div>

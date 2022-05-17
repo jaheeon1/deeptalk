@@ -1,3 +1,4 @@
+// import VideoLog from "@/models/VideoLog";
 import { HYDRATE } from "next-redux-wrapper";
 import * as t from "../types";
 
@@ -55,9 +56,13 @@ const mainReducer = (state = initialState, action) => {
 				teacherList: newTeacherList,
 			};
 		case t.TEACHER_SELECTED:
+            console.log('TEACHER_SELECTED');
 			const selectedTeacher = state.teacherList.find(
 				(teacher) => teacher._id === action.payload
 			);
+            // const videoLog = VideoLog.find(
+			// 	{'teacher_name': videoLog.name }
+			// );
 			return {
 				...state,
 				selectedTeacher,

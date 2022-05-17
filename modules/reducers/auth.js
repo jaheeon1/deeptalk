@@ -2,7 +2,7 @@ import { HYDRATE } from "next-redux-wrapper";
 import * as t from "../types";
 
 const initialState = {
-	userList: [],
+	studentList: [],
 	selectedStudent: undefined,
 	isAuthModalOpen: false,
 };
@@ -33,19 +33,19 @@ const mainReducer = (state = initialState, action) => {
 		case t.STUDENT_FETCH_SUCCEEDED:
 			return {
 				...state,
-				userList: action.payload,
+				studentList: action.payload,
 			};
 		case t.STUDENT_ADD_SUCCEEDED:
 			return {
 				...state,
-				userList: [action.payload, ...state.userList],
+				studentList: [action.payload, ...state.studentList],
 			};
 		case t.STUDENT_UPDATE_SUCCEEDED:
-			const updatedStudent = state.userList.map((user) => {
-				if (user._id === action.payload._id) {
+			const updatedStudent = state.studentList.map((student) => {
+				if (student._id === action.payload._id) {
 					return {
-						...user,
-                        userid: action.payload.userid,
+						...student,
+                        studentid: action.payload.studentid,
                         password: action.payload.password,
                         name: action.payload.name,
                         email: action.payload.email,
@@ -53,21 +53,21 @@ const mainReducer = (state = initialState, action) => {
                         phone: action.payload.phone,
 					};
 				}
-				return user;
+				return student;
 			});
 
-			return { ...state, userList: updatedStudent };
+			return { ...state, studentList: updatedStudent };
 		case t.STUDENT_DELETE_SUCCEEDED:
-			const newStudentList = state.userList.filter(
-				(user) => user._id !== action.payload
+			const newStudentList = state.studentList.filter(
+				(student) => student._id !== action.payload
 			);
 			return {
 				...state,
-				userList: newStudentList,
+				studentList: newStudentList,
 			};
 		case t.STUDENT_SELECTED:
-			const selectedStudent = state.userList.find(
-				(user) => user._id === action.payload
+			const selectedStudent = state.studentList.find(
+				(student) => student._id === action.payload
 			);
 			return {
 				...state,

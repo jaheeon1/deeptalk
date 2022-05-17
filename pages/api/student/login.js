@@ -10,26 +10,26 @@ export default async (req, res) => {
 	switch (method) {
 		case "POST":
             Student.findOne({
-                userid: req.body.userid
-            }, function (err, user) {
+                studentid: req.body.studentid
+            }, function (err, student) {
                 if (err) 
                     throw err
-                if (!user) {
+                if (!student) {
                     res
                         .status(401)
                         .send({success: false, message: '해당 ID가 존재하지 않습니다'});
                 } else {
-                    const isMatch = user.password == req.body.password;
+                    const isMatch = student.password == req.body.password;
                     if (!isMatch) {
                         return res
                             .status(401)
                             .send({message: 'FAIL'});
                     } else {
 
-                        var token = jwt.sign(user._id.toHexString(), jwtSecret)
+                        var token = jwt.sign(student._id.toHexString(), jwtSecret)
 
-                        user.token = token;
-                        user.save(function (err, user) {
+                        student.token = token;
+                        student.save(function (err, student) {
                             if (err) {
                             return res
                             .status(400)
@@ -38,12 +38,12 @@ export default async (req, res) => {
 
                             return res
                                 .status(200)
-                                .json(user);
+                                .json(student);
                            
                         }
                     })
                     }
-                    console.log(' ### 로그인 정보 : ' + JSON.stringify(user))
+                    console.log(' ### 로그인 정보 : ' + JSON.stringify(student))
                 }
             })
 	}

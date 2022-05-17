@@ -12,7 +12,7 @@ const basicSettings = {
 export function Nav() {
   const dispatch = useDispatch();
   const [loginCheck, setLoginCheck] = useState(false);
-  const [userUrls, setStudentUrls] = useState({ subTitles: [], actions: [] });
+  const [studentUrls, setStudentUrls] = useState({ subTitles: [], actions: [] });
 
   const handleCloseStudentMenu = () => {
     setAnchorElStudent(null);
@@ -21,8 +21,8 @@ export function Nav() {
     dispatch(logoutRequest());
   };
   const navs = {
-    subTitles: ["talk", "users", "teacher"],
-    urls: ["/", "users", "teacher"],
+    subTitles: ["talk", "students", "teacher"],
+    urls: ["/", "students", "teacher"],
   }
   useEffect(() => {
 		const loginedStudent = JSON.parse(localStorage.getItem("loginedStudent"));

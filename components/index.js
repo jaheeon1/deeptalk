@@ -15,3 +15,6 @@ export * from "./Teacher/TeacherSwipe";
 export * from "./Talk/TalkSwipe";
 export * from "./Talk/TalkTable";
 export * from "./Talk/TalkModal";
+
+export * from "./VideoLog/VideoLogTable";
+export * from "./Talk/TalkScreen";

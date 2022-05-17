@@ -1,9 +1,9 @@
-import { Layout,TeacherSwipe } from "@/components";
+import { Layout, VideoLogTable } from "@/components";
 
 function Landing() {
 	return (
 		<Layout>
-			<TeacherSwipe />
+			<VideoLogTable />
 		</Layout>
 	);
 }

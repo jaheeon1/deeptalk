@@ -4,14 +4,13 @@ import checkLogined  from "../lambdas/checkLogined"
 
 export function* fetchVideoLogs() {
 	try {
-		checkLogined();
-		const response = yield fetch("/api/videolog");
+		const response = yield fetch("/api/videoLog");
 
-		const videologList = yield response.json();
+		const videoLogList = yield response.json();
 
 		yield put({
 			type: t.VIDEOLOG_FETCH_SUCCEEDED,
-			payload: videologList.data,
+			payload: videoLogList.data,
 		});
 	} catch (error) {
 		yield put({
@@ -22,14 +21,14 @@ export function* fetchVideoLogs() {
 }
 
 export function* watchFetchVideoLogs() {
-    console.log('watchfetchvideolog');
+    console.log('watchfetchVideoLog');
 	yield takeLatest(t.VIDEOLOG_FETCH_REQUESTED, fetchVideoLogs);
 }
 
 export function* addVideoLog(action) {
 	try {
 		checkLogined();
-		const response = yield fetch("/api/videolog", {
+		const response = yield fetch("/api/videoLog", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -57,7 +56,7 @@ export function* watchAddVideoLog() {
 export function* deleteVideoLog(action) {
 	try {
 		checkLogined();
-		const response = yield fetch("/api/videolog/" + action.payload, {
+		const response = yield fetch("/api/videoLog/" + action.payload, {
 			method: "DELETE",
 		});
 
@@ -81,8 +80,8 @@ export function* watchRemoveVideoLog() {
 
 export function* updateVideoLog(action) {
 	try {
-		checkLogined();
-		const response = yield fetch("/api/videolog/" + action.payload._id, {
+		// checkLogined();
+		const response = yield fetch("/api/videoLog/" + action.payload._id, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",

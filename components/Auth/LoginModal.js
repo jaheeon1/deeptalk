@@ -35,7 +35,7 @@ export function LoginModal() {
 
 	useEffect(() => {
 		if (state.selectedStudent) {
-			setValue("userid", state.selectedStudent.userid);
+			setValue("studentid", state.selectedStudent.studentid);
 			setValue("password", state.selectedStudent.password);
 		}
 	}, [state.selectedStudent, setValue]);
@@ -69,8 +69,8 @@ export function LoginModal() {
                             </label>
                             <input
                                 type="text"
-                                id="userid"
-                                name="userid"
+                                id="studentid"
+                                name="studentid"
                                 placeholder="ID"
                                 className={cx("input", errors.name && "input--error")}
                                 ref={register({ required: true })}

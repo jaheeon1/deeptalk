@@ -4,12 +4,12 @@ import mongoose from "mongoose";
 const TeacherSchema = new mongoose.Schema({
 	name: {
 		type: String,
-		required: [true, "Name is required!"],
+		required: [false],
 		trim: true,
 	},
     sync_id: {
 		type: String,
-		required: [false],
+		required: [true, "sync_id is required!"],
 		trim: true,
 	},
 	expertise: {
@@ -17,7 +17,12 @@ const TeacherSchema = new mongoose.Schema({
 		required: [false],
 		trim: true,
 	},
-	imgPath: {
+	img_path: {
+		type: String,
+		required: [false],
+		trim: true,
+	},
+    language: {
 		type: String,
 		required: [false],
 		trim: true,

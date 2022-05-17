@@ -44,7 +44,7 @@ export function AuthModal() {
 
 	useEffect(() => {
 		if (state.selectedStudent) {
-			setValue("userid", state.selectedStudent.userid);
+			setValue("studentid", state.selectedStudent.studentid);
 			setValue("password", state.selectedStudent.password);
 			setValue("name", state.selectedStudent.name);
 			setValue("email", state.selectedStudent.email);

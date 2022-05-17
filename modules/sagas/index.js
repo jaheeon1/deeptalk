@@ -27,6 +27,6 @@ export default function* rootSaga() {
         videoLog.watchFetchVideoLogs(),
 		videoLog.watchAddVideoLog(),
 		videoLog.watchRemoveVideoLog(),
-		videoLog.watchUpdateVideoLog(),
+		videoLog.watchUpdateVideoLog()
 	]);
 }

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const StudentSchema = new mongoose.Schema({
-	userid: {
+	studentid: {
 		type: String,
 		required: [true, "ID is required!"],
 		trim: true,

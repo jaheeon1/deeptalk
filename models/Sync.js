@@ -74,7 +74,7 @@ export class Sync {static async generateClientToken() {
         //             sync_id: oModel.id,
         //             name: oModel.label.ko,
         //             expertise: oModel.expertise.ko,
-        //             image_path: oModel.imgPath,
+        //             img_path: oModel.imgPath,
         //             language: "ko"
         //         })
         //         // VideoLog.create({

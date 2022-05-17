@@ -49,7 +49,7 @@ console.log('RegisterModal')
 	useEffect(() => {
 		if (state.selectedStudent) {
 			setValue("_id", state.selectedStudent._id);
-			setValue("userid", state.selectedStudent.userid);
+			setValue("studentid", state.selectedStudent.studentid);
 			setValue("password", state.selectedStudent.password);
 			setValue("name", state.selectedStudent.name);
 			// setValue("email", state.selectedStudent.email);
@@ -89,14 +89,14 @@ console.log('RegisterModal')
 						>
 							<div className="form__element">
 								<label
-									htmlFor="userid"
+									htmlFor="studentid"
 									className={cx("label", errors.name && "label--error")}
 								>
 								</label>
 								<input
 									type="text"
-									id="userid"
-									name="userid"
+									id="studentid"
+									name="studentid"
 									placeholder="ID"
 									className={cx("input", errors.name && "input--error")}
 									ref={register({ required: true })}

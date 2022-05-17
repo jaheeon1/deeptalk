@@ -1,16 +1,19 @@
 
-import Teacher from "@/models/Teacher";
+import VideoLog from "@/models/VideoLog";
 import "@/models/dbConnect";
 
 export default async (req, res) => {
 	const { method } = req;
+    console.log('pages > /api/videoLog/index.js');
 	switch (method) {
 		case "GET":
 			try {
-				const teacher = await Teacher.find();
+				const videoLog = await VideoLog.find();
+                console.log('videoLog')
+                console.log(videoLog)
 				return res.status(200).json({
 					success: true,
-					data: teacher,
+					data: videoLog,
 				});
 			} catch (error) {
 				return res.status(400).json({
@@ -19,10 +22,10 @@ export default async (req, res) => {
 			}
 		case "POST":
 			try {
-				const teacher = await Teacher.create(req.body);
+				const videoLog = await VideoLog.create(req.body);
 				return res.status(201).json({
 					success: true,
-					data: teacher,
+					data: videoLog,
 				});
 			} catch (error) {
 				return res.status(400).json({

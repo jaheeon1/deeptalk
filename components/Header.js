@@ -41,8 +41,8 @@ export function Header() {
             </label>
             <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                 <li><a key="0" href="">홈</a></li>
-                <li><a key="1" href="/teacher">AI 상담선생님</a></li>
-                <li><a key="2" href="/talk">대화내역</a></li>
+                <li><a key="1" href="/teacher">AI 업데이트</a></li>
+                <li><a key="2" href="/videoLog">대화주제</a></li>
             </ul>
             </div>
         </div>
